@@ -1,6 +1,6 @@
 
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/service/api/api.service';
 @Component({
   selector: 'app-add-pays',
@@ -10,21 +10,27 @@ import { ApiService } from 'src/app/service/api/api.service';
 export class AddPaysComponent {
   @Output()
   cb_add_pays=new EventEmitter()
-  reactiveForm_add_pays !: FormGroup;
+//    reactiveForm_add_pays !: FormGroup;
   submitted:boolean=false
   loading_add_pays :boolean=false
   constructor(private formBuilder: FormBuilder,public api:ApiService) { }
-
+   reactiveForm_add_pays= new FormGroup({
+     nom: new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z]*'), ]),
+     ville: new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z]*'), ]),
+     population: new FormControl('', [Validators.required, ]),
+   });
   ngOnInit(): void {
-      this.init_form()
+    //   this.init_form()
+
   }
+
+
   init_form() {
-      this.reactiveForm_add_pays  = this.formBuilder.group({
-          id_pays: ["", Validators.required],
-nom: ["", Validators.required],
-ville: ["", Validators.required],
-population: ["", Validators.required]
-      });
+//  this.reactiveForm_add_pays  = this.formBuilder.group({
+// nom: ["", Validators.required],
+// ville: ["", Validators.required],
+// population: ["", Validators.required]
+// });
   }
 
   // acces facile au champs de votre formulaire

@@ -25,6 +25,7 @@ export class ApiService {
   }
   les_menus: any[] = []
 menus:any[] = []
+les_payss:any[]=[]
   constructor(private http: HttpClient, private route: Router) { }
   // sauvegardes
   async get_from_local_storage(key: string): Promise<any> {

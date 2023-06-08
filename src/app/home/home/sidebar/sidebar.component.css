@@ -1,0 +1,15 @@
+.sidebar {
+    background-color: #021e32;
+    color: white;
+}
+
+.sidebar #sidebar_menu li a {
+    font-size: 15px;
+    font-weight: 350;
+    color: white;
+}
+
+.mm-active a{
+    color: white!important;
+
+}

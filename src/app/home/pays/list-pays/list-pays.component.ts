@@ -35,6 +35,7 @@ export class ListPaysComponent {
   after_add(event: any) {
     if (event.status) {
       this.les_payss.unshift(event.pays)
+      this.get_pays()
     } else {
 
     }
@@ -50,5 +51,8 @@ export class ListPaysComponent {
   }
   on_close_modal_edit(){
     this.pays_to_edit=undefined
+  }
+  on_close_modal_add(){
+    this.selected_pays=undefined
   }
 }

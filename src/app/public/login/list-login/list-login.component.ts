@@ -18,7 +18,7 @@ export class ListLoginComponent {
   }
   init_form() {
       this.reactiveForm_login_login  = this.formBuilder.group({
-          login: ["", Validators.required],
+          login: ["", Validators.required,Validators.email],
           pwd: ["", Validators.required]
       });
   }

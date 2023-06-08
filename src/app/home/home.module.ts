@@ -11,8 +11,8 @@ import { ListDeconnexionComponent } from './deconnexion/list-deconnexion/list-de
 import { ListNotFoundComponent } from './not-found/list-not-found/list-not-found.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
-  
-  
+import { DashboardComponent } from './dashboard/dashboard.component';
+  import { Chart} from 'chart.js/auto'
   @NgModule({
     declarations: [
     HomeComponent,
@@ -22,12 +22,13 @@ import { NavbarComponent } from './home/navbar/navbar.component';
     ListDeconnexionComponent,
     ListNotFoundComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent
   ],
     imports: [
       CommonModule,
       HomeRoutingModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
     ]
   })
   export class HomeModule { }

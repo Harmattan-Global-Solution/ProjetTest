@@ -1,6 +1,6 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/service/api/api.service';
 @Component({
   selector: 'app-edit-pays',
@@ -18,25 +18,29 @@ export class EditPaysComponent {
   constructor(private formBuilder: FormBuilder, public api: ApiService) { 
       
   }
+  reactiveForm_add_pays= new FormGroup({
+    nom: new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z]*'), ]),
+    ville: new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z]*'), ]),
+    population: new FormControl('', [Validators.required, ]),
+  });
   ngOnInit(): void {
-      this.init_form()
+    //   this.init_form()
       this.update_form(this.pays_to_edit)
   }
-  init_form() {
-      this.reactiveForm_edit_pays  = this.formBuilder.group({
-        id_pays: ["", Validators.required],
-nom: ["", Validators.required],
-ville: ["", Validators.required],
-population: ["", Validators.required]
-      });
-  }
+//   init_form() {
+//       this.reactiveForm_edit_pays  = this.formBuilder.group({
+//         id_pays: ["", Validators.required],
+// nom: ["", Validators.required],
+// ville: ["", Validators.required],
+// population: ["", Validators.required]
+//       });
+//   }
   // mise à jour du formulaire
   update_form(pays_to_edit:any) {
       this.reactiveForm_edit_pays = this.formBuilder.group({
-          id_pays: [pays_to_edit.id_pays, Validators.required],
-nom: [pays_to_edit.nom, Validators.required],
-ville: [pays_to_edit.ville, Validators.required],
-population: [pays_to_edit.population, Validators.required]
+        nom: [pays_to_edit.nom, Validators.required],
+        ville: [pays_to_edit.ville, Validators.required],
+        population: [pays_to_edit.population, Validators.required]
       });
   }
 

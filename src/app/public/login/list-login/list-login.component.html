@@ -4,11 +4,17 @@
       <!-- login field avec un control de validite -->
     <div class="form-group col-sm-6">
       <label >login</label>
-      <input class="form-control" type="text"  formControlName="login"  placeholder="login"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }"/>
+      <!-- <input class="form-control" type="text"  formControlName="login"  placeholder="login"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }"/>
       <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
           <div *ngIf="f.login.errors.required"> login est obligatoire </div>
+      </div> -->
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="staticEmail" formControlName="login" placeholder="nom@gmail.com"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }">
+        <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+          <div *ngIf="f.login.errors.required"> login est obligatoire </div>
       </div>
-    </div>  
+    </div>
+    </div> 
 <!-- pwd field avec un control de validite -->
     <div class="form-group col-sm-6">
       <label >pwd</label>

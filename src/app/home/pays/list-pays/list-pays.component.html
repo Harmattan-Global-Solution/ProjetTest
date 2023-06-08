@@ -1,6 +1,6 @@
 <!-- entete -->
 <div class="d-flex align-items-center justify-content-between">
-  <div class="fs-1">Les Payss  - {{les_payss.length}}</div>
+  <div class="fs-1">Les Pays - {{les_payss.length}}</div>
   <div class="d-flex">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add_pays">Ajouter Pays</button>
   </div>
@@ -11,30 +11,34 @@
     <thead>
       <tr>
         <th scope="col">id_pays</th>
-<th scope="col">nom</th>
-<th scope="col">ville</th>
-<th scope="col">population</th><th scope="col">actions</th>
+        <th scope="col">nom</th>
+        <th scope="col">ville</th>
+        <th scope="col">population</th>
+        <th scope="col">actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let one_pays of les_payss">
         <td>{{one_pays.id_pays}}</td>
-<td>{{one_pays.nom}}</td>
-<td>{{one_pays.ville}}</td>
-<td>{{one_pays.population}}</td><td>
-  <div class="dropdown">
-    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
-    <div class="dropdown-menu">
-      <a (click)="on_click_edit(one_pays)" class="dropdown-item" data-bs-toggle="modal"
-        data-bs-target="#modal_edit_pays">
-        <i class="bx bx-edit-alt me-1"></i>
-        Modifier
-      </a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Voir plus</a>
-      <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Supprimer</a>
-    </div>
-  </div>
-</td>
+        <td>{{one_pays.nom}}</td>
+        <td>{{one_pays.ville}}</td>
+        <td>{{one_pays.population}}</td>
+        <td>
+          <div class="dropdown">
+            <!-- <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">actions</button>
+            <div class="dropdown-menu">
+              <a (click)="on_click_edit(one_pays)" class="dropdown-item" data-bs-toggle="modal"
+                data-bs-target="#modal_edit_pays">
+                <i class="bx bx-edit-alt me-1"></i>
+                Modifier
+              </a>
+            </div> -->
+            <!-- <button class="btn btn-success" (click)="on_click_edit(one_pays)"  data-bs-toggle="modal"
+            data-bs-target="#modal_edit_pays" ></button> -->
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_pays" (click)="on_click_edit(one_pays)">Modiifer</button>
+
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -42,15 +46,15 @@
 <!-- ajout -->
 <div class="modal fade" id="modal_add_pays" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-          <div class="modal-header " data-bs-theme="dark">
-              <h1 class="modal-title fs-5">Ajouter Pays</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <app-add-pays (cb_add_pays)="after_add($event)"></app-add-pays>
-          </div>
+    <div class="modal-content">
+      <div class="modal-header " data-bs-theme="dark">
+        <h1 class="modal-title fs-5">Ajouter Pays</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)=" on_close_modal_add()"></button>
       </div>
+      <div class="modal-body">
+        <app-add-pays (cb_add_pays)="after_add($event)"></app-add-pays>
+      </div>
+    </div>
   </div>
 </div>
 <!-- modification -->
@@ -59,12 +63,13 @@
     <div class="modal-content">
       <div class="modal-header" data-bs-theme="dark">
         <h1 class="modal-title fs-5">Modifier Pays</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="on_close_modal_edit()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="on_close_modal_edit()"></button>
       </div>
       <div class="modal-body">
-        <app-edit-pays *ngIf="pays_to_edit" (cb_edit_pays)="after_edit($event)" [pays_to_edit]="pays_to_edit"></app-edit-pays>
+        <app-edit-pays *ngIf="pays_to_edit" (cb_edit_pays)="after_edit($event)"
+          [pays_to_edit]="pays_to_edit"></app-edit-pays>
       </div>
     </div>
   </div>
 </div>
-  

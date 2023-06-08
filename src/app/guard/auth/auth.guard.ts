@@ -30,6 +30,12 @@ export class AuthGuard implements CanActivate {
         path: "/home/pays",
         icone:"assets/images/new/menu1.png",
        
+      },
+      {
+        titre: "Dashboard", 
+        path: "/home/dashboard",
+        icone:"assets/images/new/menu1.png",
+       
       }
       
     ]

@@ -1,42 +1,34 @@
 
-<form  [formGroup]="reactiveForm_edit_pays " (ngSubmit)="onSubmit_edit_pays ()" #form_edit_pays ="ngForm" class="row">
-  <!-- id_pays field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >id_pays</label>
-      <input class="form-control" type="text"  formControlName="id_pays"  placeholder="id_pays"  [ngClass]="{ 'is-invalid': submitted && f.id_pays.errors }"/>
-      <div *ngIf="submitted && f.id_pays.errors" class="invalid-feedback">
-          <div *ngIf="f.id_pays.errors.required"> id_pays est obligatoire </div>
-      </div>
-    </div>  
+<form  [formGroup]="reactiveForm_edit_pays " (ngSubmit)="onSubmit_edit_pays ()" #form_edit_pays ="ngForm" class="row">    
 <!-- nom field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >nom</label>
-      <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
-      <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
-          <div *ngIf="f.nom.errors.required"> nom est obligatoire </div>
-      </div>
-    </div>  
+<div class="form-group col-sm-6">
+  <label >nom</label>
+  <input class="form-control" type="text"  formControlName="nom"  placeholder="nom"  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"/>
+  <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+      <div *ngIf="f.nom.errors.required">Le nom saisie est incorrect! </div>
+  </div>
+</div>  
 <!-- ville field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >ville</label>
-      <input class="form-control" type="text"  formControlName="ville"  placeholder="ville"  [ngClass]="{ 'is-invalid': submitted && f.ville.errors }"/>
-      <div *ngIf="submitted && f.ville.errors" class="invalid-feedback">
-          <div *ngIf="f.ville.errors.required"> ville est obligatoire </div>
-      </div>
-    </div>  
+<div class="form-group col-sm-6">
+  <label >ville</label>
+  <input class="form-control" type="text"  formControlName="ville"  placeholder="ville"  [ngClass]="{ 'is-invalid': submitted && f.ville.errors }"/>
+  <div *ngIf="submitted && f.ville.errors" class="invalid-feedback">
+      <div *ngIf="f.ville.errors.required"> La ville saisie est incorrect! </div>
+  </div>
+</div>  
 <!-- population field avec un control de validite -->
-    <div class="form-group col-sm-6">
-      <label >population</label>
-      <input class="form-control" type="text"  formControlName="population"  placeholder="population"  [ngClass]="{ 'is-invalid': submitted && f.population.errors }"/>
-      <div *ngIf="submitted && f.population.errors" class="invalid-feedback">
-          <div *ngIf="f.population.errors.required"> population est obligatoire </div>
-      </div>
-    </div>  
+<div class="form-group col-sm-6">
+  <label >population</label>
+  <input class="form-control" type="number"  formControlName="population"  placeholder="population"  [ngClass]="{ 'is-invalid': submitted && f.population.errors }"/>
+  <div *ngIf="submitted && f.population.errors" class="invalid-feedback">
+      <div *ngIf="f.population.errors.required"> saisie  incorrect! </div>
+  </div>
+</div>  
 </form>
 <!-- vous pouvez valider votre formulaire n'importe ou -->
 
 <div class="text-center m-2">
     <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_pays "
-        (click)="form_edit_pays .ngSubmit.emit()">{{loading_edit_pays ?"En cours ...":"Valider"}}</button>
+        (click)="form_edit_pays .ngSubmit.emit()" [disabled]="reactiveForm_edit_pays.invalid">{{loading_edit_pays ?"En cours ...":"Valider"}}</button>
     <button class="btn btn-secondary m-2" type="reset" (click)="onReset_edit_pays ()">Vider</button>
 </div>

@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListPaysComponent } from './pays/list-pays/list-pays.component';
 import { ListDeconnexionComponent } from './deconnexion/list-deconnexion/list-deconnexion.component';
 import { ListNotFoundComponent } from './not-found/list-not-found/list-not-found.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component'
 const routes: Routes = [
   {path:"",component:ListPaysComponent},
 {path:"pays",component:ListPaysComponent},
+{path:"dashboard",component:DashboardComponent},
 {path:"deconnexion",component:ListDeconnexionComponent},
-{path:"**",component:ListNotFoundComponent}
+{path:"**",component:ListNotFoundComponent},
+
 ];
 
 @NgModule({
