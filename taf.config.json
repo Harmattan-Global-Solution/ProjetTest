@@ -1,0 +1,80 @@
+{
+	"projectName": "projetTest",
+	"decription": "Fichier de configuration de Taf",
+    "taf_base_url": "http://localhost/jantaf/",
+	"les_modules": [
+		{
+			"module": "home",
+			"les_tables": [
+				{
+					"table": "pays",
+					"description": [
+                        "id_pays",
+                        "nom",
+                        "ville",
+                        "population"
+					],
+					"les_types": [
+						"add",
+						"edit",
+						"list",
+						"details"
+					]
+				},
+				{
+					"table": "deconnexion",
+					"description": [],
+					"les_types": [
+						"deconnexion"
+					]
+				},
+				{
+					"table": "not_found",
+					"description": [],
+					"les_types": [
+						"not-found"
+					]
+				},
+				{
+					"table": "utilisateur",
+					"description": [
+						
+						"login",
+                        "pwd"
+					
+						
+					],
+					"les_types": [
+						"add",
+						"edit",
+						"list"
+					]
+				}
+			
+				
+			]
+		},
+		{
+			"module": "public",
+			"les_tables": [
+				{
+					"table": "login",
+					"description": [
+						"login",
+						"pwd"
+					],
+					"les_types": [
+						"login"
+					]
+				},
+				{
+					"table": "not_found",
+					"description": [],
+					"les_types": [
+						"not-found"
+					]
+				}
+			]
+		}
+	]
+}

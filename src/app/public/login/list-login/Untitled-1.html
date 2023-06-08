@@ -1,0 +1,147 @@
+<div class="d-flex align-items-center vh-100">
+  <div class="container">
+    <form  [formGroup]="reactiveForm_login_login " (ngSubmit)="onSubmit_login_login ()" #form_login_login ="ngForm" class="row">
+      <!-- login field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >login</label>
+      <input class="form-control" type="text"  formControlName="login"  placeholder="login"  [ngClass]="{ 'is-invalid': submitted && f.login.errors }"/>
+      <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+          <div *ngIf="f.login.errors.required"> login est obligatoire </div>
+      </div>
+    </div>  
+<!-- pwd field avec un control de validite -->
+    <div class="form-group col-sm-6">
+      <label >pwd</label>
+      <input class="form-control" type="text"  formControlName="pwd"  placeholder="pwd"  [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }"/>
+      <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
+          <div *ngIf="f.pwd.errors.required"> pwd est obligatoire </div>
+      </div>
+    </div>  
+    </form>
+    <!-- vous pouvez valider votre formulaire n'importe ou -->
+
+    <div class="text-center m-2">
+        <button type="button" class="btn btn-primary m-2" [disabled]="loading_login_login "
+            (click)="form_login_login .ngSubmit.emit()">{{loading_login_login ?"En cours ...":"Valider"}}</button>
+        <button class="btn btn-secondary m-2" type="reset" (click)="onReset_login_login ()">Vider</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+66666666666666666666666
+export class ListLoginComponent {
+  reactiveForm_login_login !: FormGroup;
+  submitted:boolean=false
+  loading_login_login :boolean=false
+  constructor(private formBuilder: FormBuilder,public api:ApiService,private router:Router) { }
+
+  ngOnInit(): void {
+      this.init_form()
+  }
+  init_form() {
+      this.reactiveForm_login_login  = this.formBuilder.group({
+          login: ["", Validators.required],
+          pwd: ["", Validators.required]
+      });
+  }
+
+  // acces facile au champs de votre formulaire
+  get f(): any { return this.reactiveForm_login_login .controls; }
+  // validation du formulaire
+  onSubmit_login_login () {
+      this.submitted = true;
+      console.log(this.reactiveForm_login_login .value)
+      // stop here if form is invalid
+      if (this.reactiveForm_login_login .invalid) {
+          return;
+      }
+      var login =this.reactiveForm_login_login .value
+      this.login_login (login )
+  }
+  // vider le formulaire
+  onReset_login_login () {
+      this.submitted = false;
+      this.reactiveForm_login_login .reset();
+  }
+  login_login(login: any) {
+      this.loading_login_login = true;
+      this.api.taf_post_login("taf_auth/auth", login, async (reponse: any) => {
+      if (reponse.status) {
+          console.log("Opération effectuée avec succés sur la table login. Réponse= ", reponse);
+          this.onReset_login_login()
+          await this.api.save_on_local_storage("token", reponse.data)
+          //alert("Opération éffectuée avec succés")
+          this.router.navigate(['/home'])
+          this.test()
+      } else {
+          console.log("L'opération sur la table login a échoué. Réponse= ", reponse);
+          alert("L'opération a echoué")
+      }
+      this.loading_login_login = false;
+  }, (error: any) => {
+      this.loading_login_login = false;
+  })
+}
+async  test(){
+    this.api.network.token = await this.api.get_from_local_storage("token")
+    if (this.api.network.token == null) {// pas de token dans 
+      alert("Accés interdit")
+      this.router.navigate(['/login'])
+    } else {
+      await this.api.update_data_from_token()
+      this.redirect_user(this.api.token.user_connected)
+    }
+}
+redirect_user(user: any): void {
+    console.log("custom home defaul page ", user)
+      this.router.navigate(['/home/pays'])
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ProjetTest</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE"></script> 
+  <script>window.global = window;</script>
+</head>
+<body>
+  <app-root></app-root>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+.modal-header {
+    background:  linear-gradient(to right,#2828e1 80%,white)!important;
+}
+.modal-header h1{
+    color: blue;
+}
+.btn-close {
+    color: #fff!important; 
+    opacity: 1;
+}
+.clique{
+    cursor: pointer;
+}

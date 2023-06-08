@@ -1,0 +1,13 @@
+<nav class="sidebar">
+    <ul id="sidebar_menu">
+        <ng-container *ngFor="let un_menu of api.les_menus">
+            <li class="une_route">
+                <a class="has-arrow" aria-expanded="false" [routerLink]="[un_menu.path]">
+                    <img class="card-img-top" [src]="un_menu.icone" alt="">
+                    <span>{{un_menu.titre}}</span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+    
+</nav>

@@ -1,0 +1,33 @@
+<!-- <div class="d-flex align-items-center justify-content-between">
+  <div class="fs-1">
+        Module home
+  </div>
+  <div class="d-flex">
+        <div class="dropdown">
+              <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                    data-bs-toggle="dropdown">{{menu.titre}}</button>
+              <div class="dropdown-menu">
+                    <a routerLinkActive="bg-primary text-white"  *ngFor="let one_menu of menu.items" [routerLink]="[one_menu.path]" class="dropdown-item" >
+                          {{one_menu.libelle}}
+                    </a>
+              </div>
+        </div>
+  </div>
+</div> -->
+      <!-- <router-outlet></router-outlet>
+<app-sidebar></app-sidebar>
+      <app-navbar></app-navbar> -->
+      <div  >
+            <app-sidebar></app-sidebar>
+        <section class="main_content dashboard_part">
+            <app-navbar></app-navbar>
+            <div class="main_content_iner ">
+                <div class="container-fluid p-0">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+            <div class="footer_part d-flex align-items-center justify-content-center">
+                <p>2023 &copy; - PHARMACIE BLAISE DIAGNE</p>
+            </div>
+        </section>
+        </div>
