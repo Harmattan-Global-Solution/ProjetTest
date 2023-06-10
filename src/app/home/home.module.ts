@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
   import { CommonModule } from '@angular/common';
   
   import { HomeRoutingModule } from './home-routing.module';
-  import { ReactiveFormsModule } from '@angular/forms';
+  import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddPaysComponent } from './pays/add-pays/add-pays.component';
 import { EditPaysComponent } from './pays/edit-pays/edit-pays.component';
@@ -29,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       CommonModule,
       HomeRoutingModule,
       ReactiveFormsModule,
+      FormsModule
     ]
   })
   export class HomeModule { }

@@ -8,8 +8,7 @@ import { ApiService } from 'src/app/service/api/api.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  filtered_list:any[]=[]
-  recherche:string=""
+ 
 
   // constructor() { }
   constructor(public api:ApiService, private router:Router) { }

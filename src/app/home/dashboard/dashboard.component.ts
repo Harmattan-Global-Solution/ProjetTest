@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
   chart: any;
   loading_get_pays=false;
   les_payss:any[]= []
+  recherche:string=""
+  filtered_list:any[]=[]
   constructor(public api: ApiService) {}
 
   
@@ -23,7 +25,8 @@ this.get_pays()
     this.api.taf_post("pays/get", {}, (reponse: any) => {
       if (reponse.status) {
         this.les_payss = reponse.data
-        this.creatChart(this.les_payss)
+        this.on_recherche_change()
+        this.creatChart(this.filtered_list)
         console.log("Opération effectuée avec succés sur la table pays. Réponse= ", reponse);
       } else {
         console.log("L'opération sur la table pays a échoué. Réponse= ", reponse);
@@ -73,5 +76,13 @@ this.get_pays()
 
       }
     )
+  }
+  on_recherche_change(){
+    console.log("on recherche ",this.recherche)
+    this.filtered_list = this.les_payss.
+    filter((un_pays:any)=>{
+      return (un_pays.nom+" "+(un_pays.ville||"")+" "+(un_pays.population||"")).toLocaleLowerCase().includes(this.recherche.toLocaleLowerCase())
+
+    })
   }
 }

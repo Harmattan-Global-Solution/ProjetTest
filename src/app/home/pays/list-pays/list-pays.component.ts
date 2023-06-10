@@ -10,6 +10,9 @@ export class ListPaysComponent {
   les_payss: any[] = []
   selected_pays: any = undefined
   pays_to_edit: any = undefined
+  recherche:string=""
+  filtered_list:any[]=[]
+
   constructor(public api: ApiService,) {
 
   }
@@ -21,6 +24,7 @@ export class ListPaysComponent {
     this.api.taf_post("pays/get", {}, (reponse: any) => {
       if (reponse.status) {
         this.les_payss = reponse.data
+        this.on_recherche_change()
         console.log("Opération effectuée avec succés sur la table pays. Réponse= ", reponse);
       } else {
         console.log("L'opération sur la table pays a échoué. Réponse= ", reponse);
@@ -42,6 +46,7 @@ export class ListPaysComponent {
   }
   after_edit(params: any) {
     this.les_payss[this.les_payss.indexOf(this.pays_to_edit)]=params.new_data
+    this.get_pays()
   }
   voir_plus(one_pays: any) {
     this.selected_pays = one_pays
@@ -54,5 +59,22 @@ export class ListPaysComponent {
   }
   on_close_modal_add(){
     this.selected_pays=undefined
+  }
+
+  // on_recherche_change(){
+  //   console.log("on recherche ",this.recherche)
+  //   this.filtered_list = this.les_payss.
+  //   filter((un_pays:any)=>{
+  //     return (un_pays.nom||" "+" "+(un_pays.ville||"")).toLocaleLowerCase().includes(this.recherche.toLocaleLowerCase())
+
+  //   })
+  // }
+  on_recherche_change(){
+    console.log("on recherche ",this.recherche)
+    this.filtered_list = this.les_payss.
+    filter((un_pays:any)=>{
+      return (un_pays.nom+" "+(un_pays.ville||"")+" "+(un_pays.population||"")).toLocaleLowerCase().includes(this.recherche.toLocaleLowerCase())
+
+    })
   }
 }
