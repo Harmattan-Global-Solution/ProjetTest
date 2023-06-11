@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   les_payss:any[]= []
   recherche:string=""
   filtered_list:any[]=[]
+  selectedOption: string = "";
+
   constructor(public api: ApiService) {}
 
   
@@ -26,6 +28,7 @@ this.get_pays()
       if (reponse.status) {
         this.les_payss = reponse.data
         this.on_recherche_change()
+        this.change_country()
         this.creatChart(this.filtered_list)
         console.log("Opération effectuée avec succés sur la table pays. Réponse= ", reponse);
       } else {
@@ -41,6 +44,9 @@ this.get_pays()
   creatChart(data:any) {
      let abs: any = data.map((objet_courant:any)=>{return objet_courant.nom})
      let ord: any = data.map((objet_courant:any)=>{return objet_courant.population})
+     if(this.chart){
+      this.chart.destroy()
+     }
     this.chart = new Chart(
       'MyChart5', // indetifiant du chart
       // configurations et données (2) du chart
@@ -84,5 +90,38 @@ this.get_pays()
       return (un_pays.nom+" "+(un_pays.ville||"")+" "+(un_pays.population||"")).toLocaleLowerCase().includes(this.recherche.toLocaleLowerCase())
 
     })
+    this.creatChart(this.filtered_list)
+  }
+  change_country() {
+    console.log("Option sélectionnée :", this.selectedOption);
+    switch (this.selectedOption) {
+      case "populationInf5M":
+        this.filtered_list = this.les_payss.filter((un_pays: any) => {
+          return un_pays.population <= 5000000;
+        });
+        break;
+  
+      case "populationInf10M":
+        this.filtered_list = this.les_payss.filter((un_pays: any) => {
+          return un_pays.population < 10000000;
+        });
+        break;
+  
+      case "populationSup10M":
+        this.filtered_list = this.les_payss.filter((un_pays: any) => {
+          return un_pays.population >= 10000000;
+        });
+        break;
+  
+      case "populationSup20M":
+        this.filtered_list = this.les_payss.filter((un_pays: any) => {
+          return un_pays.population >= 20000000;
+        });
+        break;
+  
+      default:
+        this.filtered_list = this.les_payss;
+        break;
+    }
   }
 }

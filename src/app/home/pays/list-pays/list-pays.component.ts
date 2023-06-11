@@ -12,6 +12,8 @@ export class ListPaysComponent {
   pays_to_edit: any = undefined
   recherche:string=""
   filtered_list:any[]=[]
+  clik_pays:string=""
+  selectedOption: string = "";
 
   constructor(public api: ApiService,) {
 
@@ -61,14 +63,7 @@ export class ListPaysComponent {
     this.selected_pays=undefined
   }
 
-  // on_recherche_change(){
-  //   console.log("on recherche ",this.recherche)
-  //   this.filtered_list = this.les_payss.
-  //   filter((un_pays:any)=>{
-  //     return (un_pays.nom||" "+" "+(un_pays.ville||"")).toLocaleLowerCase().includes(this.recherche.toLocaleLowerCase())
 
-  //   })
-  // }
   on_recherche_change(){
     console.log("on recherche ",this.recherche)
     this.filtered_list = this.les_payss.
@@ -77,4 +72,56 @@ export class ListPaysComponent {
 
     })
   }
+  // change_country(){
+  //   console.log("on recherche ",this.clik_pays)
+  //   this.filtered_list = this.les_payss.
+  //   filter((un_pays:any)=>{
+  //     return (un_pays.population||"").toLocaleLowerCase().includes(this.clik_pays.toLocaleLowerCase())
+
+  //   })
+  // }
+  // change_country() {
+  //   console.log("Recherche de pays avec une population supérieure à", this.clik_pays);
+  //   this.filtered_list = this.les_payss.filter((un_pays: any) => {
+  //     if (un_pays.population) {
+  //       return parseInt(un_pays.population) > parseInt(this.clik_pays);
+  //     }
+  //     return false;
+  //   });
+  // }
+
+change_country() {
+  console.log("Option sélectionnée :", this.selectedOption);
+  switch (this.selectedOption) {
+    case "populationInf5M":
+      this.filtered_list = this.les_payss.filter((un_pays: any) => {
+        return un_pays.population <= 5000000;
+      });
+      break;
+
+    case "populationInf10M":
+      this.filtered_list = this.les_payss.filter((un_pays: any) => {
+        return un_pays.population < 10000000;
+      });
+      break;
+
+    case "populationSup10M":
+      this.filtered_list = this.les_payss.filter((un_pays: any) => {
+        return un_pays.population >= 10000000;
+      });
+      break;
+
+    case "populationSup20M":
+      this.filtered_list = this.les_payss.filter((un_pays: any) => {
+        return un_pays.population >= 20000000;
+      });
+      break;
+
+    default:
+      this.filtered_list = this.les_payss;
+      break;
+  }
+}
+
+  
 }
