@@ -13,7 +13,8 @@ import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
   import { Chart} from 'chart.js/auto'
-  @NgModule({
+  import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+    @NgModule({
     declarations: [
     HomeComponent,
     AddPaysComponent,
@@ -23,13 +24,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ListNotFoundComponent,
     SidebarComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    
   ],
     imports: [
       CommonModule,
       HomeRoutingModule,
       ReactiveFormsModule,
-      FormsModule
+      FormsModule,
+      // NgMultiSelectDropDownModule.forRoot(),
     ]
   })
   export class HomeModule { }

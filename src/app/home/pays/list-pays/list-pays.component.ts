@@ -12,7 +12,6 @@ export class ListPaysComponent {
   pays_to_edit: any = undefined
   recherche:string=""
   filtered_list:any[]=[]
-  clik_pays:string=""
   selectedOption: string = "";
 
   constructor(public api: ApiService,) {
@@ -27,6 +26,7 @@ export class ListPaysComponent {
       if (reponse.status) {
         this.les_payss = reponse.data
         this.on_recherche_change()
+        this.change_country()
         console.log("Opération effectuée avec succés sur la table pays. Réponse= ", reponse);
       } else {
         console.log("L'opération sur la table pays a échoué. Réponse= ", reponse);

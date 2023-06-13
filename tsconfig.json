@@ -22,8 +22,11 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "importHelpers": true
   },
+
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
